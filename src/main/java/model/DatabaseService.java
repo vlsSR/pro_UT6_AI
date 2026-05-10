@@ -17,9 +17,8 @@ public class DatabaseService {
                 "id INT AUTO_INCREMENT PRIMARY KEY, " +
                 "nombre VARCHAR(30), " +
                 "apellidos VARCHAR(80), " +
-                "fecha_nacimiento DATE, " +
                 "nacionalidad VARCHAR(20), " +
-                "genero_literario VARCHAR(50)" +
+                "fecha_nacimiento DATE " +
                 ")";
 
         try {

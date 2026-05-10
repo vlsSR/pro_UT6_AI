@@ -48,7 +48,7 @@ public class VistaAutor extends JFrame {
         add(scrollPane, BorderLayout.CENTER);
         add(panelDOWN, BorderLayout.SOUTH);
 
-        pack();
+        setSize(800, 400);
         setLocationRelativeTo(null);
         setVisible(true);
     }
