@@ -1,19 +1,23 @@
 package model;
 
+import java.sql.Date;
+
 public class Libro {
     private int id;
     private String isbn;
     private String titulo;
     private String genero;
     private int stock;
+    private Date fechaPublicacion;
     private int id_autor;
 
-    public Libro(int id, String isbn, String titulo, String genero, int stock, int id_autor) {
+    public Libro(int id, String isbn, String titulo, String genero, int stock, Date fechaPublicacion, int id_autor) {
         this.id = id;
         this.isbn = isbn;
         this.titulo = titulo;
         this.genero = genero;
         this.stock = stock;
+        this.fechaPublicacion = fechaPublicacion;
         this.id_autor = id_autor;
     }
 
@@ -57,11 +61,30 @@ public class Libro {
         this.stock = stock;
     }
 
+    public Date getFechaPublicacion() {
+        return fechaPublicacion;
+    }
+
+    public void setFechaPublicacion(Date fechaPublicacion) {
+        this.fechaPublicacion = fechaPublicacion;
+    }
+
     public int getId_autor() {
         return id_autor;
     }
 
     public void setId_autor(int id_autor) {
         this.id_autor = id_autor;
+    }
+
+    @Override
+    public String toString() {
+        return "id=" + id +
+                "   |   isbn='" + isbn + '\'' +
+                "   |   Titulo='" + titulo + '\'' +
+                "   |   Genero=" + genero + '\'' +
+                "   |   Stock='" + stock + '\'' +
+                "   |   Fecha de Publicacion=" + fechaPublicacion + '\'' +
+                "   |   Id del autor=" + id_autor + '\'';
     }
 }

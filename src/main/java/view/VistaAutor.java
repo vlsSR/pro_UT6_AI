@@ -3,7 +3,6 @@ package view;
 import model.Autor;
 
 import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 
 public class VistaAutor extends JFrame {
@@ -22,7 +21,7 @@ public class VistaAutor extends JFrame {
 
     public VistaAutor() {
         setTitle("Gestion autores");
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setLayout(new BorderLayout());
 
         JPanel panelUP = new JPanel(new GridLayout(4, 2));

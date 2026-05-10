@@ -1,9 +1,6 @@
 package model;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 public class DatabaseService {
     private final Conexion conexion;
@@ -35,6 +32,7 @@ public class DatabaseService {
                 "titulo VARCHAR(100), " +
                 "genero VARCHAR(100), " +
                 "stock INT, " +
+                "fecha_publicacion DATE, " +
                 "id_autor INT, " +
                 "FOREIGN KEY (id_autor) REFERENCES autores(id)" +
                 ")";
