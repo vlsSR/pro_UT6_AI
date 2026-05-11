@@ -70,22 +70,27 @@ public class Controller {
     }
 
     public void crearAutor() {
+        String mensajeError = "";
         String nombre = ventanaAutor.txNombre.getText();
         String apellidos = ventanaAutor.txApelidos.getText();
         String nacionalidad = ventanaAutor.txNacionalidad.getText();
-        Date fechaNacimiento;
+        Date fechaNacimiento = null;
         try {
             fechaNacimiento = Date.valueOf(ventanaAutor.txFechaNacimiento.getText());
         } catch (IllegalArgumentException e) {
-            JOptionPane.showMessageDialog(ventanaAutor, "Formato de la fecha incorrecto (AAAA-MM-DD)");
-            return;
+            mensajeError = mensajeError.concat("Formato de la fecha incorrecto (AAAA-MM-DD)\n");
         }
         if (nombre.isEmpty() || apellidos.isEmpty() || nacionalidad.isEmpty()) {
-            JOptionPane.showMessageDialog(ventanaAutor, "Necesitas introducir todos los campos para añadir un autor");
-            return;
+            mensajeError = mensajeError.concat("Necesitas introducir todos los campos para añadir un autor");
         }
-        autorService.crearAutor(nombre, apellidos, nacionalidad, fechaNacimiento);
-        actualizarListaVistaAutor();
+
+        if (mensajeError.isEmpty()) {
+            autorService.crearAutor(nombre, apellidos, nacionalidad, fechaNacimiento);
+            actualizarListaVistaAutor();
+        } else {
+            JOptionPane.showMessageDialog(ventanaAutor, mensajeError);
+        }
+
     }
 
     public void borrarAutor() {
@@ -135,44 +140,48 @@ public class Controller {
     }
 
     public void crearLibro() {
-
+        String mensajeError = "";
         String isbn = ventanaLibro.txIsbn.getText();
         String titulo = ventanaLibro.txTitulo.getText();
         String genero = ventanaLibro.txGenero.getText();
-        Integer stock;
-        Integer id_autor;
+        int stock = 0;
+        int idAutor = 0;
 
         try {
              stock = Integer.parseInt(ventanaLibro.txStock.getText());
-
         } catch (NumberFormatException ex) {
-            JOptionPane.showMessageDialog(ventanaLibro, "Formato del stock incorrecto");
-            return;
+            mensajeError = mensajeError.concat("Formato del stock incorrecto (solo numeros positivos)\n");
         }
 
         try {
-            id_autor = Integer.parseInt(ventanaLibro.txIdAutor.getText());
+            idAutor = Integer.parseInt(ventanaLibro.txIdAutor.getText());
         } catch (NumberFormatException ex) {
-            JOptionPane.showMessageDialog(ventanaLibro, "Formato del id del autor incorrecto");
-            return;
+            mensajeError = mensajeError.concat("Formato del id del autor incorrecto (solo numeros positivos)\n");
         }
 
-        Date fechaPublicacion;
+        Date fechaPublicacion = null;
 
         try {
             fechaPublicacion = Date.valueOf(ventanaLibro.txFechaPublicacion.getText());
         } catch (IllegalArgumentException e) {
-            JOptionPane.showMessageDialog(ventanaLibro, "Formato de la fecha incorrecto (AAAA-MM-DD)");
-            return;
+            mensajeError = mensajeError.concat("Formato de la fecha incorrecto (AAAA-MM-DD)\n");
         }
 
-        if (isbn.isEmpty() || titulo.isEmpty() || genero.isEmpty() || stock.equals(null) || id_autor.equals(null)) {
-            JOptionPane.showMessageDialog(ventanaLibro, "Necesitas introducir todos los campos para añadir un libro");
-            return;
+        if (!existeAutor(idAutor)) {
+            mensajeError = mensajeError.concat("No existe un autor con ese id\n");
         }
 
-        libroService.crearLibro(isbn, titulo, genero, stock, fechaPublicacion, id_autor);
-        actualizarListaVistaLibro();
+        if (isbn.isEmpty() || titulo.isEmpty() || genero.isEmpty()) {
+            mensajeError = mensajeError.concat("Necesitas introducir todos los campos para añadir un libro");
+        }
+
+        if (mensajeError.isEmpty()) {
+            libroService.crearLibro(isbn, titulo, genero, stock, fechaPublicacion, idAutor);
+            actualizarListaVistaLibro();
+        } else {
+            JOptionPane.showMessageDialog(ventanaLibro, mensajeError);
+        }
+
     }
 
     public void borrarLibro() {

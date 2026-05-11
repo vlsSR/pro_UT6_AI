@@ -81,7 +81,7 @@ public class LibroService {
     }
 
     public void actualizarLibroDate(int id, String campo, Date nuevoValor) {
-        String query = "UPDATE autores SET "+campo+"=? WHERE id=?";
+        String query = "UPDATE libros SET "+campo+"=? WHERE id=?";
         try {
             PreparedStatement psi=conexion.connection.prepareStatement(query);
             psi.setDate(1, nuevoValor);
