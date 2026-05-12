@@ -1,5 +1,4 @@
-package controller;
-
+import controller.Controller;
 import view.Inicio;
 
 public class Main {
