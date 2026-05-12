@@ -8,7 +8,7 @@ import javax.swing.*;
 public class Controller {
     private Inicio ventanaInicio;
     private final DatabaseService databaseService;
-    private static AutorService autorService;
+    private final AutorService autorService;
     private LibroService libroService;
     private final Conexion conexion;
 
@@ -22,6 +22,7 @@ public class Controller {
         databaseService.crearTablaAutores();
         databaseService.crearTablaLibros();
 
+        this.autorService = new AutorService(conexion);
         this.libroService = new LibroService(conexion);
 
         this.ventanaInicio.btnAutor.addActionListener(e -> abrirVentanaAutor());
@@ -31,12 +32,10 @@ public class Controller {
     }
 
     public void abrirVentanaAutor() {
-        autorService = new AutorService(conexion);
         new AutorController(autorService);
     }
 
     public void abrirVentanaLibro() {
-        this.libroService = new LibroService(conexion);
         new LibroController(libroService, autorService);
     }
 }
