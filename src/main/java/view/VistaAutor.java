@@ -24,7 +24,7 @@ public class VistaAutor extends JFrame {
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setLayout(new BorderLayout());
 
-        JPanel panelUP = new JPanel(new GridLayout(4, 2));
+        JPanel panelUP = new JPanel(new GridLayout(4, 2, 10 ,10));
         panelUP.add(new JLabel("Nombre:"));
         panelUP.add(new JLabel("Apellidos:"));
         panelUP.add(txNombre);
