@@ -19,6 +19,7 @@ public class VistaLibro extends JFrame{
     public JButton btnEliminar = new JButton("Eliminar");
     public JButton btnSalir = new JButton("Salir");
     public JButton btnActualizar = new JButton("Actualizar");
+    public JButton btnBuscar = new JButton("Buscar por id");
 
 
     public VistaLibro() {
@@ -44,6 +45,7 @@ public class VistaLibro extends JFrame{
         JScrollPane scrollPane = new JScrollPane(listaLibros);
 
         JPanel panelDOWN = new JPanel();
+        panelDOWN.add(btnBuscar);
         panelDOWN.add(btnAgregar);
         panelDOWN.add(btnActualizar);
         panelDOWN.add(btnEliminar);

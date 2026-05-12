@@ -16,6 +16,7 @@ public class AutorController {
         this.ventanaAutor.btnAgregar.addActionListener(e -> crearAutor());
         this.ventanaAutor.btnEliminar.addActionListener(e -> borrarAutor());
         this.ventanaAutor.btnActualizar.addActionListener(e -> actualizarAutor());
+        this.ventanaAutor.btnBuscar.addActionListener(e -> buscarPorID());
         this.ventanaAutor.btnSalir.addActionListener(e -> ventanaAutor.dispose());
         actualizarListaVistaAutor();
     }
@@ -94,5 +95,22 @@ public class AutorController {
             autorService.actualizarAutorDate(id, "fecha_nacimiento", fechaNacimiento);
         }
         actualizarListaVistaAutor();
+    }
+
+    public void buscarPorID() {
+        int id;
+        try {
+            id = Integer.parseInt(JOptionPane.showInputDialog(ventanaAutor, "Introduce el id del autor"));
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(ventanaAutor, "No has introducido un numero");
+            return;
+        }
+        for (Autor autor : autorService.getAutores()) {
+            if (autor.getId() == id) {
+                JOptionPane.showMessageDialog(ventanaAutor, "El autor encontrado es: \n "+autor);
+                return;
+            }
+        }
+        JOptionPane.showMessageDialog(ventanaAutor, "No hay ningun autor con ese id");
     }
 }

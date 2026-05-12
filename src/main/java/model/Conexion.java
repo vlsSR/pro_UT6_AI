@@ -18,6 +18,7 @@ public class Conexion {
             connection.createStatement().execute("CREATE DATABASE IF NOT EXISTS " + base);
 
             connection.createStatement().execute("USE "+ base);
+
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

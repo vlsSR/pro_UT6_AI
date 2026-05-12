@@ -22,6 +22,7 @@ public class LibroController {
         this.ventanaLibro.btnAgregar.addActionListener(e -> crearLibro());
         this.ventanaLibro.btnEliminar.addActionListener(e -> borrarLibro());
         this.ventanaLibro.btnActualizar.addActionListener(e -> actualizarLibro());
+        this.ventanaLibro.btnBuscar.addActionListener(e -> buscarPorID());
         this.ventanaLibro.btnSalir.addActionListener(e -> ventanaLibro.dispose());
         actualizarListaVistaLibro();
     }
@@ -151,6 +152,23 @@ public class LibroController {
         actualizarListaVistaLibro();
     }
 
+    public void buscarPorID() {
+        int id;
+        try {
+            id = Integer.parseInt(JOptionPane.showInputDialog(ventanaLibro, "Introduce el id del libro"));
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(ventanaLibro, "No has introducido un numero");
+            return;
+        }
+        for (Libro libro : libroService.getLibros()) {
+            if (libro.getId() == id) {
+                JOptionPane.showMessageDialog(ventanaLibro, "El libro encontrado es: \n "+libro);
+                return;
+            }
+        }
+        JOptionPane.showMessageDialog(ventanaLibro, "No hay ningun libro con ese id");
+    }
+
     public boolean existeAutor(int id) {
         for (Autor autor : autorService.getAutores()) {
             if (autor.getId() == id) {
@@ -159,4 +177,6 @@ public class LibroController {
         }
         return false;
     }
+
+
 }
