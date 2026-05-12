@@ -3,6 +3,7 @@ package view;
 import javax.swing.*;
 import java.awt.*;
 
+//Ventana de inicio del programa, te permite navegar entre las diferentes tablas o salir
 public class Inicio extends JFrame {
 
     public JButton btnLibro = new JButton("Libros");
@@ -13,6 +14,7 @@ public class Inicio extends JFrame {
     private JPanel panelBtns = new JPanel(new FlowLayout());
     private JPanel panelTitl = new JPanel(new GridLayout(2,1));
 
+    //Constructor de la ventana con sus propiedades
     public Inicio() {
         setTitle("CRUD Libreria");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -30,5 +32,6 @@ public class Inicio extends JFrame {
         add(panelTitl);
         add(panelBtns);
         setVisible(true);
+        setLocationRelativeTo(null);
     }
 }

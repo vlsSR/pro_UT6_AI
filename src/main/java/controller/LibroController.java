@@ -9,6 +9,7 @@ import view.VistaLibro;
 import javax.swing.*;
 import java.sql.Date;
 
+//Controlador que gestiona la logica de la ventana de libros
 public class LibroController {
     private final LibroService libroService;
 

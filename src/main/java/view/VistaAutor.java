@@ -5,6 +5,7 @@ import model.Autor;
 import javax.swing.*;
 import java.awt.*;
 
+//Ventana CRUD de la tabla autor
 public class VistaAutor extends JFrame {
     public JTextField txNombre = new JTextField(20);
     public JTextField txApelidos = new JTextField(20);
@@ -20,11 +21,13 @@ public class VistaAutor extends JFrame {
     public JButton btnBuscar = new JButton("Buscar por id");
 
 
+    //Constructor de la ventana
     public VistaAutor() {
         setTitle("Gestion autores");
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setLayout(new BorderLayout());
 
+        //Panel con los text fields pra itnroducir los datos
         JPanel panelUP = new JPanel(new GridLayout(4, 2, 10 ,10));
         panelUP.add(new JLabel("Nombre:"));
         panelUP.add(new JLabel("Apellidos:"));
@@ -36,8 +39,10 @@ public class VistaAutor extends JFrame {
         panelUP.add(txFechaNacimiento);
         panelUP.add(txNacionalidad);
 
+        //Panel central para mostrar la lista de los autores en todo momento
         JScrollPane scrollPane = new JScrollPane(listaAutores);
 
+        //Panel de abajo para los botones de las operaciones del CRUD
         JPanel panelDOWN = new JPanel();
         panelDOWN.add(btnBuscar);
         panelDOWN.add(btnAgregar);

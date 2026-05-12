@@ -5,6 +5,7 @@ import model.Libro;
 import javax.swing.*;
 import java.awt.*;
 
+//Ventana CRUD de la tabla libros
 public class VistaLibro extends JFrame{
     public JTextField txIsbn = new JTextField(20);
     public JTextField txTitulo = new JTextField(20);
@@ -21,12 +22,13 @@ public class VistaLibro extends JFrame{
     public JButton btnActualizar = new JButton("Actualizar");
     public JButton btnBuscar = new JButton("Buscar por id");
 
-
+    //Constructor de la ventana de libros
     public VistaLibro() {
         setTitle("Gestion libros");
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setLayout(new BorderLayout());
 
+        //Panel con los text fields pra itnroducir los datos
         JPanel panelUP = new JPanel(new GridLayout(4, 3));
         panelUP.add(new JLabel("isbn:"));
         panelUP.add(new JLabel("Titulo:"));
@@ -42,8 +44,10 @@ public class VistaLibro extends JFrame{
         panelUP.add(txFechaPublicacion);
         panelUP.add(txIdAutor);
 
+        //Panel central para mostrar la lista de los autores en todo momento
         JScrollPane scrollPane = new JScrollPane(listaLibros);
 
+        //Panel de abajo para los botones de las operaciones del CRUD
         JPanel panelDOWN = new JPanel();
         panelDOWN.add(btnBuscar);
         panelDOWN.add(btnAgregar);

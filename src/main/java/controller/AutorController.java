@@ -7,6 +7,7 @@ import view.VistaAutor;
 import javax.swing.*;
 import java.sql.Date;
 
+//Controlador que gestiona la logica de la ventana de autores
 public class AutorController {
     private final AutorService autorService;
     private VistaAutor ventanaAutor;
@@ -51,7 +52,7 @@ public class AutorController {
         }
     }
 
-    public void borrarAutor() {
+    public void borrarAutor()  {
         int id;
         try {
             id = ventanaAutor.listaAutores.getSelectedValue().getId();
@@ -59,7 +60,13 @@ public class AutorController {
             JOptionPane.showMessageDialog(ventanaAutor, "Selecciona un autor para poder eliminarlo");
             return;
         }
-        autorService.borrarAutor(id);
+        //Esto no puede dar otro error que no sea el relacionado con la excepcion
+        try {
+            autorService.borrarAutor(id);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(ventanaAutor, "No puedes borrar un autor que tenga libros asociados\nBorra primero esos libros");
+            return;
+        }
         actualizarListaVistaAutor();
     }
 

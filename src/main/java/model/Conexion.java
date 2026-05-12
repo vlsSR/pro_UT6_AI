@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+//Clase de la conexion a la base de datos
 public class Conexion {
     Connection connection = null;
     String base = "libreria";
@@ -15,6 +16,7 @@ public class Conexion {
         try {
             connection = DriverManager.getConnection(url, user, password);
 
+            //Crea la base de datos de primeras si no existe y luego la usa
             connection.createStatement().execute("CREATE DATABASE IF NOT EXISTS " + base);
 
             connection.createStatement().execute("USE "+ base);

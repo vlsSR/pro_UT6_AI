@@ -3,6 +3,7 @@ package model;
 import java.sql.*;
 import java.util.ArrayList;
 
+//Clase encargada de las operaciones SQL relacionadas con autores
 public class LibroService {
     private final Conexion conexion;
     private ArrayList<Libro> libros;

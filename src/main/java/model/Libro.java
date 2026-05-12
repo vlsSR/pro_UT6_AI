@@ -2,6 +2,7 @@ package model;
 
 import java.sql.Date;
 
+//Clase de datos para mapear los libros
 public class Libro {
     private int id;
     private String isbn;

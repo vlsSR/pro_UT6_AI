@@ -2,6 +2,7 @@ package model;
 
 import java.sql.Date;
 
+//Clase de datos para mapear los autores
 public class Autor {
     private int id;
     private String nombre;

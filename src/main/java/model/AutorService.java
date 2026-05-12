@@ -3,6 +3,7 @@ package model;
 import java.sql.*;
 import java.util.ArrayList;
 
+//Clase encargada de las operaciones SQL relacionadas con autores
 public class AutorService {
     private final Conexion conexion;
     private ArrayList<Autor> autores;
@@ -34,13 +35,13 @@ public class AutorService {
         try {
             Statement statement = conexion.connection.createStatement();
             ResultSet rs = statement.executeQuery(query);
-            while(rs.next()) {
+            while (rs.next()) {
                 autores.add(new Autor(rs.getInt("id"),
                         rs.getString("nombre"),
                         rs.getString("apellidos"),
                         rs.getString("nacionalidad"),
                         rs.getDate("fecha_nacimiento")
-                        ));
+                ));
             }
             rs.close();
             statement.close();
@@ -49,23 +50,22 @@ public class AutorService {
         }
     }
 
-    public void borrarAutor(int id) {
+    //Este metodo hace un throws de la excepcion porque si se intenta borrar un autor relacionado con libros salta y se gestiona desde el controlador
+    public void borrarAutor(int id) throws SQLException {
         String query = "DELETE FROM autores WHERE id=?";
-        try {
-            PreparedStatement psi = conexion.connection.prepareStatement(query);
-            psi.setInt(1, id);
-            psi.executeUpdate();
-            psi.close();
-            actualizarAutores();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+
+        PreparedStatement psi = conexion.connection.prepareStatement(query);
+        psi.setInt(1, id);
+        psi.executeUpdate();
+        psi.close();
+        actualizarAutores();
+
     }
 
     public void actualizarAutorString(int id, String campo, String nuevoValor) {
-        String query = "UPDATE autores SET "+campo+"=? WHERE id=?";
+        String query = "UPDATE autores SET " + campo + "=? WHERE id=?";
         try {
-            PreparedStatement psi=conexion.connection.prepareStatement(query);
+            PreparedStatement psi = conexion.connection.prepareStatement(query);
             psi.setString(1, nuevoValor);
             psi.setInt(2, id);
             psi.executeUpdate();
@@ -77,9 +77,9 @@ public class AutorService {
     }
 
     public void actualizarAutorDate(int id, String campo, Date nuevoValor) {
-        String query = "UPDATE autores SET "+campo+"=? WHERE id=?";
+        String query = "UPDATE autores SET " + campo + "=? WHERE id=?";
         try {
-            PreparedStatement psi=conexion.connection.prepareStatement(query);
+            PreparedStatement psi = conexion.connection.prepareStatement(query);
             psi.setDate(1, nuevoValor);
             psi.setInt(2, id);
             psi.executeUpdate();

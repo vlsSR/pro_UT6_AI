@@ -2,6 +2,7 @@ package model;
 
 import java.sql.SQLException;
 
+//Clase de serivicio basico de la base de datos, encargada de crear las tablas
 public class DatabaseService {
     private final Conexion conexion;
 
